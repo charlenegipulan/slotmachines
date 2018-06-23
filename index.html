@@ -8,6 +8,8 @@
     <title>Slotmachine</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+
 </head>
 <body>
     <h1></h1>
@@ -18,20 +20,20 @@
 
         <div class="one">
             <div>
-                <h1 class="text-center">Slotmachine game</h1>
+                <h1 class="text-center">slots       </h1>
             </div>
         </div>
 
         <div class="two">
             <!-- keys -->
-            <div>
+            <div class="keys">
                 <h2>Keys</h2>
                 <ul>
-                    <li> $</li>
-                    <li>banana</li>
-                    <li>orange</li>
-                    <li>apple</li>
-                    <li>potato</li>
+                    <li>💲💲💲 x 5</li>
+                    <li>🍌🍌🍌 x 4</li>
+                    <li>🍊🍊🍊 x 3</li>
+                    <li>🍎🍎🍎 x 2</li>
+                    <li>🥔🥔🥔 x 1.5</li>
                 </ul>
             </div>
 
@@ -39,27 +41,27 @@
             <div class="slots">
                 <div class="reels">
                     <div class="reelone">
-                        <h2>Reel 1</h2>
-                        <button>Stop</button>
+                        <div class="box1">1</div>
+                        <button type="button" class="btn btn-secondary">Stop</button>
                     </div>
                     <div class="reeltwo">
-                        <h2>Reel 2</h2>
-                        <button>Stop</button>
+                        <div class="box2">2</div>
+                        <button type="button" class="btn btn-secondary">Stop</button>
                     </div>
                     <div class="reelthree">
-                        <h2>Reel 3</h2>
-                        <button>Stop</button>
+                        <div class="box3">3</div>
+                        <button type="button" class="btn btn-secondary">Stop</button>
                     </div>
                 </div>    
                 <div class="bottom">
-                    <button>Shuffle</button>
+                    <button type="button" class="btn btn-danger">Spin</button>
                 </div>
             </div> 
                 
 
             <div>
                 <h2> Betted Amount:</h2>
-                <h2>0</h2>
+                <h3 id="bettedAmount">0</h2>
                 <h2>Current Winnings</h2>
                 <h2> 0</h2>
             </div>
@@ -68,9 +70,9 @@
 
         </div>
 
-        <div class="row bg-primary text-center">
-            <div class="col-xs-12">
-                <button class="btn btn-info-btn-xl">Restart</button>
+        <div class="three">
+            <div>
+                <button>Restart</button>
                 
             </div>
         </div>

@@ -1,34 +1,67 @@
+h1, h2, h3 {
+    font-family: 'Rubik Mono One', sans-serif;
+    color: white;
+}
+
+li {
+    font-size: 30px;
+}
 .flex-container {
     display: flex;
     flex-direction: column;
-    background-color: orange;
+    background-color: rgb(191, 191, 191)
+
   }
 
 .one {
-    background-color: red;
+
 }
 
 .two {
-    background-color: purple;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
+.keys {
+    text-align: center;
+}
+
+li {
+    list-style-type: none;
+    color: white;
+}
+
+.three {
+    text-align: center;
+}
+
 
 .slots {
-    background-color: yellow;   
+    float: none;
 }
 
 .reels {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: rgb(255, 219, 77);
+    padding: 40px;
+    text-align: center;
 }
 
 .bottom {
     display: flex;
-    background-color: yellow;
     justify-content: center;
+    background-color: rgb(255, 219, 77);
+    padding: 30px;
+}
+
+.box1, .box2, .box3 {
+    background-color: white;
+    padding: 100px 100px;
+    margin: 5px;    
+    length: 150px;
+
 }
 
