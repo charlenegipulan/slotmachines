@@ -3,6 +3,11 @@ h1, h2, h3 {
     color: white;
 }
 
+h4 {
+    color: black;
+    font-size: 100px;
+}
+
 li {
     font-size: 30px;
 }
@@ -59,7 +64,7 @@ li {
 
 .box1, .box2, .box3 {
     background-color: white;
-    padding: 100px 100px;
+    padding: 50px;
     margin: 5px;    
     length: 150px;
 
