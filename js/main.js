@@ -1,35 +1,19 @@
 /*----- constants -----*/
-var dataLookup = [
-    {
-        emoji:  '💲',
-        worth: 5
-    },
-    {
-        emoji: '🍌',
-        worth: 4
-    },
-    {
-        emoji: '🍊',
-        worth: 3
-    },
-    {
-        emoji: '🍎',
-        worth: 2
-    },
-    {
-        emoji: '🥔',
-        worth: 1.5
-    }
+var symbols = [
+    { emoji: '💲', worth: 5 },
+    { emoji: '🍌', worth: 4 },
+    { emoji: '🍊', worth: 3 },
+    { emoji: '🍎', worth: 2 },
+    { emoji: '🥔', worth: 1.5 }
 ];
 
 var weighting = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4]
-var symbols = ['💲', '🍌', '🍊', '🍎', '🥔']
-
 
 /*----- app's state (variables) -----*/
 
 var reels, stopped;
 var score, currentWinnings
+var timerIds;
 
 // prompt for bet 
 // var bet = prompt("Bet amount: ");
@@ -37,10 +21,8 @@ var score, currentWinnings
 //     document.getElementById('bettedAmount').innerHTML = bet;
 
 
-
 /*----- cached element references -----*/
-
-
+var reelEls = document.querySelectorAll('div.reels h4');
 
 /*----- event listeners -----*/
 document.getElementById('btn-shuffle').addEventListener('click', function() {
@@ -49,98 +31,85 @@ document.getElementById('btn-shuffle').addEventListener('click', function() {
     startFlashing();
 })
 
-
-
 //1st stop button
 document.getElementById('stop1').addEventListener('click', function() {
-    stopShuffle1();
-})
+    stopShuffle(0);
+});
 
 //2st stop button
 document.getElementById('stop2').addEventListener('click', function() {
-    stopShuffle2();
-})
+    stopShuffle(1);
+});
 
 //3rd stop button
 document.getElementById('stop3').addEventListener('click', function() {
-    stopShuffle3();
-})
+    stopShuffle(2);
+});
         
         
            
 /*----- functions -----*/
-
-function getSymbol() {
-    var idx = Math.floor(Math.random() * weighting.length);
-    return symbols[weighting[idx]];
-}
-
 function startFlashing() {
-    // use the values in 'stopped' to determine which reels to keep flashing
-    shuffleReel1 = setInterval(shuffle1, 150); 
-    shuffleReel2 = setInterval(shuffle2, 180); 
-    shuffleReel3 = setInterval(shuffle3, 150);
-}
-
-function stopShuffle(reelIdx) {
-    stopped[reelIdx] = true;
-    // render();
+    timerIds = [];
+    timerIds.push(setInterval(function() {
+        shuffle(0);
+    }, 150)); 
+    timerIds.push(setInterval(function() {
+        shuffle(1);
+    }, 180)); 
+    timerIds.push(setInterval(function() {
+        shuffle(2);
+    }, 150)); 
 }
 
 function getRandomResult() {
     var result = [];
     for (var i = 0; i < 3; i++) {
-        result.push(Math.floor(Math.random()*dataLookup.length));
+        result.push(weighting[Math.floor(Math.random() * weighting.length)]);
     }
     return result;
 }
 
-function shuffle1() {
-    var randomizedNum = Math.floor(Math.random()*dataLookup.length);
-    //console.log(randomizedNum); chooses a random number between 1-4
-    document.getElementById('reeltext1').innerHTML = dataLookup[randomizedNum].emoji;
-    };
-
-function shuffle2() {
-    var randomizedNum = Math.floor(Math.random()*dataLookup.length);
-    document.getElementById('reeltext2').innerHTML = dataLookup[randomizedNum].emoji;
+function shuffle(reelIdx) {
+    var symbolIdx = Math.floor(Math.random() * symbols.length);
+    reelEls[reelIdx].textContent = symbols[symbolIdx].emoji;
 };
 
-function shuffle3() {
-    var randomizedNum = Math.floor(Math.random()*dataLookup.length);
-    document.getElementById('reeltext3').innerHTML = dataLookup[randomizedNum].emoji;
+function stopShuffle(reelIdx) {
+    stopped[reelIdx] = true;
+    clearInterval(timerIds[reelIdx]);
+    // if (!stopped.includes(false) {
+    //     // score points here;
+    // };
+    render();
+};      
+
+function checkForWin() {
+
 };
 
 
-function stopShuffle1() {
-        clearInterval(shuffleReel1);
-    }  
-
-function stopShuffle2() {
-    clearInterval(shuffleReel2);
-}
-
-function stopShuffle3() {
-    clearInterval(shuffleReel3);
-} 
-        
         
 function initialize() {
     reels= [null, null, null];
+    stopped = [false, false, false];
     score = 0;
-            
     render();
-    };
+};
             
             
             
 //transfers all state to the DOM(Visualization)
-// function render() {
-            
+function render() {
+    reelEls.forEach(function(h4, idx) {
+        if (stopped[idx]) h4.textContent = symbols[reels[idx]].emoji;
+    });
+    // render bankroll
+    // render winning/losing messaging         
                     
-                    
-// initialize();
-                      
+}
+
+initialize()
                     
 
                     
