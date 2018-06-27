@@ -7,31 +7,37 @@ var symbols = [
     { emoji: '🥔', worth: 1.5 }
 ];
 
-var weighting = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4]
+var weighting = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4];
+
+// var sounds = {
+//     reels: 'https://freesound.org/data/previews/69/69689_866625-lq.mp3'
+// };
 
 /*----- app's state (variables) -----*/
 
 var reels, stopped;
 var winnings, bankroll, bet;
 var timerIds;
+// var player = new Audio();
+
 
 
 /*----- cached element references -----*/
 var reelEls = document.querySelectorAll('div.reels h4');
-
+var spinBtn = document.getElementById('btn-shuffle');
 var bankrollAmount = document.getElementById('currentBankroll');
 var betAmount = document.getElementById('bettedAmount');
 
 
 
 /*----- event listeners -----*/
-document.getElementById('btn-shuffle').addEventListener('click', function() {
+spinBtn.addEventListener('click', function() {
     reels = [];
     reels = getRandomResult();
     winnings = 0;
     stopped = [false, false, false];
     startFlashing();
-})
+});
 
 //1st stop button
 document.getElementById('stop1').addEventListener('click', function() {
@@ -47,31 +53,35 @@ document.getElementById('stop2').addEventListener('click', function() {
 document.getElementById('stop3').addEventListener('click', function() {
     stopShuffle(2);
 });
-      
+
 //increase bet button
 document.getElementById('add').addEventListener('click', increaseBet);
 
 
 //decrease bet button
 document.getElementById('subtract').addEventListener('click', decreaseBet);  
-    
+
 
 /*----- functions -----*/
 function increaseBet() {
+    if (stopped.includes(false)) return;
     if (bankroll < 5) return;
-        bet += 5; 
-        bankroll -= 5;
+    bet += 5; 
+    bankroll -= 5;
     render();
 };
 
 function decreaseBet() {
+    if (stopped.includes(false)) return;
     if (bet < 5 ) return;
-        bankroll += 5;
-        bet -= 5;
+    bankroll += 5;
+    bet -= 5;
     render();
 };
 
 function startFlashing() {
+    var reelSound = new Audio('https://freesound.org/data/previews/69/69689_866625-lq.mp3');
+    reelSound.play();
     timerIds = [];
     timerIds.push(setInterval(function() {
         shuffle(0);
@@ -98,6 +108,8 @@ function shuffle(reelIdx) {
 };
 
 function stopShuffle(reelIdx) {
+    var stopReel = new Audio('https://freesound.org/data/previews/243/243020_4284968-lq.mp3');
+    stopReel.play();
     stopped[reelIdx] = true;
     clearInterval(timerIds[reelIdx]);
     if (!stopped.includes(false)) {
@@ -115,14 +127,12 @@ function checkForWin() {
         winnings = bet * 1;
         bankroll += winnings;
     }
-    winnings -= bet; 
     bet = 0;
-}
-   
+} 
           
 function initialize() {
     reels= [null, null, null];
-    stopped = [false, false, false];
+    stopped = [];
     bankroll = 100;
     bet = 0;
 render();
@@ -135,12 +145,18 @@ function render() {
     reelEls.forEach(function(h4, idx) {
         if (stopped[idx]) h4.textContent = symbols[reels[idx]].emoji;
     });
-    betAmount.textContent = bet;
-    bankrollAmount.textContent = bankroll;
-                    
+    betAmount.textContent = '$' + bet;
+    bankrollAmount.textContent = '$' + bankroll;
+    if (bet === 0 && bankroll === 0) alert('loser!');
+    bet === 0 ? spinBtn.setAttribute('disabled','disabled') : spinBtn.removeAttribute('disabled');
+    // if ( bet === 0 && bankroll === 0) {
+    //     alert('You lose!);
+    // stopped[0] ? spinBtn.setAttribute('disabled','disabled') : spinBtn.removeAttribute('disabled');
+    // stopped[1] ? spinBtn.setAttribute('disabled','disabled') : spinBtn.removeAttribute('disabled');
+    // stopped[2] ? spinBtn.setAttribute('disabled','disabled') : spinBtn.removeAttribute('disabled');
 };
  
-initialize()
+initialize();
                     
 
                     

@@ -3,18 +3,49 @@ h1, h2, h3 {
     color: white;
 }
 
+h3 {
+    display: inline-block;
+    margin-top: -10px;
+}
+
+p {
+    display: block;  
+}
+
+h1 {
+    text-shadow: 2px 2px 4px #000000;
+    text-align: center;
+    letter-spacing: 15px;
+}
+.flash {
+    animation-name: flash;
+     animation-duration: 0.2s;
+     animation-timing-function: linear;
+     animation-iteration-count: infinite;
+     animation-direction: alternate;
+     animation-play-state: running;
+ }
+ 
+ @keyframes flash {
+     from {color: white;}
+     to {color: gold;}
+ }
+
+h2 {
+    font-size: 15px;
+}
 
 
 h4 {
     color: black;
-    font-size: 100px;
+    font-size: 90px;
 }
 
 li {
-    font-size: 20px;
+    font-size: 23px;
 }
 .flex-container {
-    /* display: flex; */
+    display: flex;
     flex-direction: column;
     background-color: rgb(191, 191, 191)
 
@@ -33,12 +64,30 @@ body {
 }
 
 .keys {
-    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+    float: left;
+    background-color: rgb(204, 204, 204);
+    border: 2px white;
+    padding-right: 35px;
+    height: 220px;
+}
+
+.scoreboard {
+    /* margin: 0 auto; */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 2px white;
+    float: right;
+    margin-left: 150px;
+    padding: 5px 10px;
+    width: 320px;
 }
 
 li {
     list-style-type: none;
     color: white;
+    text-align: center;
 }
 
 .three {
@@ -48,17 +97,9 @@ li {
     justify-content: center;
 }
 
-.keys {
-    float: left;
-}
-
-.scoreboard {
-    float: right;
-}
-
-
 .slots {
     float: none;
+    margin-bottom: 2px;
 }
 
 .reels {
@@ -66,22 +107,121 @@ li {
     flex-direction: row;
     justify-content: center;
     background-color: rgb(255, 219, 77);
-    padding: 20px 10px 10px 10px;
+    padding: 20px 5px 5px 10px;
     text-align: center;
+    width: 740px;
+    height: 303px;
+    margin: 0 auto;
+    border-radius: 25px 25px 0 0;
+
 }
 
 .bottom {
     display: flex;
     justify-content: center;
     background-color: rgb(255, 219, 77);
-    padding: 10px 30px;
+    padding: 5px 30px 10px 30px;
+    border-radius: 25px;
+    height: 120px;
+
 }
 
 .box1, .box2, .box3 {
     background-color: white;
-    padding: 80px;
-    height: 290px;
-    width: 260px;
-    margin: 10px 10px;
+    padding: 50px;
+    height: 220px;
+    width: 210px;
+    margin: 10px;
+    box-shadow: 5px 10px #D4AC0D;
 }
 
+.box4 {
+    background-color: #F7DC6F;
+    box-shadow: 5px 10px #D4AC0D;
+    width: 750px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    padding-top: 20px;
+}
+
+.box5 {
+    height: 8px;
+    background-color: white;
+    width: 160px;
+    margin: 0 auto;
+    box-shadow: -5px -5px #D4AC0D;
+}
+
+#stop1, #stop2, #stop3 {
+    margin-top: 5px;
+    border-radius: 100%;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
+    box-shadow: 5px 5px #D4AC0D; 
+    color: gray;
+}
+
+.topbox {
+    width: 600px;
+    height: 30px;
+    margin: 0 auto;
+    background-color:rgb(255, 219, 77);
+    box-shadow: -5px -5px #D4AC0D;
+}
+
+.bottombox {
+    width: 700px;
+    height: 20px;
+    margin: 0 auto;
+    background-color:rgb(255, 219, 77);
+}
+
+.bottombox2 {
+    width: 600px;
+    height: 5px;
+    background-color: #D4AC0D; 
+    margin: 0 auto;
+}
+    
+
+#btn-shuffle {
+    background-color: #004A7F;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Arial;
+  font-size: 20px;
+  padding: 5px 40px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+}
+@-webkit-keyframes glowing {
+  0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+}
+}
+
+#btn-shuffle:active {
+    background-color: red;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#add, #subtract {
+    display: inline;
+    color: rgb(179, 179, 179);
+}
+
+#currentBankroll, #bettedAmount {
+    font-size: 70px;
+    color: #F1C40F
+}

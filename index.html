@@ -14,100 +14,75 @@
 
 </head>
 <body>
-    <h1></h1>
-    <!-- <button id="inc-btn">Increment Score</button>
-    <button id="dec-btn">Decrement Score</button> --> 
-    
+
     <div class="flex-container">
 
         <div class="one">
             <div>
-                <h1 class="text-center">slots       </h1>
+                <h1 class="flash">slots of FUN</h1>
             </div>
         </div>
 
         <div class="two">
-            <!-- keys -->
-            <!-- <div class="keys">
-                <h2>Keys</h2>
-                <ul>
-                    <li>💲💲💲 x 5</li>
-                    <li>🍌🍌🍌 x 4</li>
-                    <li>🍊🍊🍊 x 3</li>
-                    <li>🍎🍎🍎 x 2</li>
-                    <li>🥔🥔🥔 x 1.5</li>
-                </ul>
-            </div> -->
-
-    
             <div class="slots">
+                <div class="topbox"></div>
                 <div class="reels">
                     <div class="reelone">
+                        <div class="box5"> </div>
                         <div class="box1">
                             <h4></h4>
                         </div>
-                        <button type="button" class="btn btn-secondary" id="stop1"> Stop</button>
+                        <button type="button" class="btn btn-secondary" id="stop1"><b>x</b></button>
                     </div>
                     <div class="reeltwo">
+                        <div class="box5"> </div>
                         <div class="box2">
                             <h4></h4>
                         </div>
-                        <button type="button" class="btn btn-secondary" id="stop2">Stop</button>
+                        <button type="button" class="btn btn-secondary" id="stop2"><b>x</b></button>
                     </div>
                     <div class="reelthree">
+                        <div class="box5"> </div>
                         <div class="box3">
                             <h4></h4>
                         </div>
-                        <button type="button" class="btn btn-secondary" id="stop3">Stop</button>
+                        <button type="button" class="btn btn-secondary" id="stop3"> <b>x</b></button>
                     </div>
                 </div>    
                 <div class="bottom">
-                    <button type="button" class="btn btn-danger" id="btn-shuffle">SHUFFLE</button>
+                    <div class="box4">
+                        <button type="button" class="btn btn-danger" id="btn-shuffle">SPIN</button>
+                    </div>
+                </div>
+                <div class="bottombox">
+                    <div class="bottombox2"></div>
                 </div>
             </div> 
-                
-
-            <!-- <div>
-                <h2> Betted Amount:</h2>
-                <h3 id="bettedAmount"></h3>
-                    <button id="add">+</button> <button id="subtract">-</button>
-                    <h2>Bankroll</h2>
-                <h3 id="currentBankroll"></h3>
-            </div> -->
-
-
-
         </div>
 
+
+
         <div class="three">
-            <div>
-                    <div class="keys">
-                            <h2>Keys</h2>
-                            <ul>
-                                <li>💲💲💲 x 5</li>
-                                <li>🍌🍌🍌 x 4</li>
-                                <li>🍊🍊🍊 x 3</li>
-                                <li>🍎🍎🍎 x 2</li>
-                                <li>🥔🥔🥔 x 1.5</li>
-                            </ul>
-                    </div>
-                    <div class="scoreboard">
-                            <h2> Betted Amount:</h2>
-                            <h3 id="bettedAmount"></h3>
-                                <button id="add">+</button> <button id="subtract">-</button>
-                                <h2>Bankroll</h2>
-                            <h3 id="currentBankroll"></h3>
-                    </div>
-            
-                <!-- <button>Restart</button> -->
-            </div>   
-           
+            <div class="keys">
+                <h2>Keys</h2>
+                    <ul>
+                        <li>💲💲💲 x 5</li>
+                        <li>🍌🍌🍌 x 4</li>
+                        <li>🍊🍊🍊 x 3</li>
+                        <li>🍎🍎🍎 x 2</li>
+                        <li>🥔🥔🥔 x 1.5</li>
+                    </ul>
+            </div>
+            <div class="scoreboard">
+                <h2> Betted Amount:</h2>
+                <p> <h3 class="flash" id="bettedAmount"></h3>  
+                <button id="subtract">-</button><button id="add">+</button>  </p>
+                <h2>Bankroll</h2>
+                <h3 class="flash" id="currentBankroll"></h3>
+            </div>
         </div>
 
 
     </div>
-
-
-    
 </body>
 </html>
