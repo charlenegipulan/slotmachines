@@ -1,4 +1,4 @@
-#Slots of FUN
+# Slots of FUN
 A personalized version of an animated slot machine game in which the user places a bet after every spin by increasing/decreasing the bet amount in regards to the current bankroll. The game is initialized with $100 in bankroll.<br>
 The player loses once the bet amount and the bankroll amount both reach $0. Payouts are based on the values of the fruits, which are weighted as:
 
@@ -18,16 +18,16 @@ The player loses once the bet amount and the bankroll amount both reach $0. Payo
 ![Slotmachine Screenshot](https://i.imgur.com/DfXD6kD.png)
 
 
-##Technologies Used
+## Technologies Used
     * HTML
     * CSS
     * JavaScript
 
     
-##Getting Started:
+## Getting Started:
 [Try me!](https://charlenegipulan.github.io/slotmachines/) to check out a live demo of the game.
 
 
-##Next Steps
+## Next Steps
 * Add a modal displaying winning/losing message
 * Create buttons that allow user to increment the bet with different amounts. 

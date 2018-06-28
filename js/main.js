@@ -20,15 +20,12 @@ var reels, stopped;
 var winnings, bankroll, bet;
 var timerIds;
 
-
-
 /*----- cached element references -----*/
+
 var reelEls = document.querySelectorAll('div.reels h4');
 var spinBtn = document.getElementById('btn-shuffle');
 var bankrollAmount = document.getElementById('currentBankroll');
 var betAmount = document.getElementById('bettedAmount');
-
-
 
 /*----- event listeners -----*/
 spinBtn.addEventListener('click', function() {
@@ -57,10 +54,8 @@ document.getElementById('stop3').addEventListener('click', function() {
 //increase bet button
 document.getElementById('add').addEventListener('click', increaseBet);
 
-
 //decrease bet button
 document.getElementById('subtract').addEventListener('click', decreaseBet);  
-
 
 /*----- functions -----*/
 function increaseBet() {
@@ -144,6 +139,11 @@ function checkForWin() {
     }
     bet = 0;
 } 
+
+//losing message function
+function declareLoser() {
+    document.querySelector('.modalBox').style.display = 'block';
+}
           
 function initialize() {
     reels= [null, null, null];
@@ -152,6 +152,7 @@ function initialize() {
     bet = 0;
 render();
 };
+
             
 //transfers all state to the DOM(Visualization)
 function render() {
@@ -160,7 +161,7 @@ function render() {
     });
     betAmount.textContent = '$' + bet;
     bankrollAmount.textContent = '$' + bankroll.toFixed(0);
-    // if (bet === 0 && bankroll === 0) alert('loser!');
+    if (bet === 0 && bankroll === 0) declareLoser();
     if (bet === 0) {
         spinBtn.setAttribute('disabled','disabled');
         spinBtn.classList.remove('glow');
