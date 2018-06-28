@@ -34,6 +34,7 @@ spinBtn.addEventListener('click', function() {
     winnings = 0;
     stopped = [false, false, false];
     startFlashing();
+    render();
 });
 
 //1st stop button
@@ -57,7 +58,9 @@ document.getElementById('add').addEventListener('click', increaseBet);
 //decrease bet button
 document.getElementById('subtract').addEventListener('click', decreaseBet);  
 
+
 /*----- functions -----*/
+//increase bet amount by 5
 function increaseBet() {
     addSound = new Audio('https://freesound.org/data/previews/333/333038_3908740-lq.mp3');
     addSound.play();
@@ -93,6 +96,7 @@ function startFlashing() {
     }, 130)); 
 }
 
+//function to get a randomized winning array
 function getRandomResult() {
     var result = [];
     for (var i = 0; i < 3; i++) {
@@ -101,6 +105,7 @@ function getRandomResult() {
     return result;
 }
 
+//responsible for displaying the random emoji's in the reels, different intervals
 function shuffle(reelIdx) {
     var symbolIdx = Math.floor(Math.random() * symbols.length);
     reelEls[reelIdx].textContent = symbols[symbolIdx].emoji;
@@ -109,6 +114,8 @@ function shuffle(reelIdx) {
     stop3.textContent = stopped[2] ? '' : 'X';
 };
 
+//function to run when stop  buttons are clicked, and turns reel to true
+//checks if any of the reels have false, if none, runs checkwin function
 function stopShuffle(reelIdx) {
     var stopReel = new Audio('https://freesound.org/data/previews/243/243020_4284968-lq.mp3');
     stopReel.play();
@@ -121,6 +128,7 @@ function stopShuffle(reelIdx) {
     render();
 };      
 
+//runs to check the winning array
 function checkForWin() {
     //if there's three matching numbers in the array
     if (reels[0] === reels[1] && reels[0] === reels[2] && reels[1] === reels[2]) {
@@ -128,11 +136,13 @@ function checkForWin() {
         winningSound.play();
         winnings = bet * symbols[reels[0]].worth;
         bankroll += winnings;
+    //if there's 2 matching, any, just returns the betted amount to bankroll   
     } else if (reels[0] === reels[1] || reels[0] === reels[2] || reels[1] === reels[2]) {
         returnSound = new Audio('https://freesound.org/data/previews/69/69681_866625-lq.mp3');
         returnSound.play();
         winnings = bet * 1;
         bankroll += winnings;
+    //if none matches, play loser audio and takes away bet, change it to 0   
     } else {
         loseSound = new Audio('https://freesound.org/data/previews/371/371451_5450487-lq.mp3');
         loseSound.play();
@@ -140,11 +150,12 @@ function checkForWin() {
     bet = 0;
 } 
 
-//losing message function
+//losing message function, runs when bet and bankroll reach 0
 function declareLoser() {
     document.querySelector('.modalBox').style.display = 'block';
 }
-          
+ 
+
 function initialize() {
     reels= [null, null, null];
     stopped = [];
@@ -162,7 +173,7 @@ function render() {
     betAmount.textContent = '$' + bet;
     bankrollAmount.textContent = '$' + bankroll.toFixed(0);
     if (bet === 0 && bankroll === 0) declareLoser();
-    if (bet === 0) {
+    if (bet === 0 || stopped.includes(false)) {
         spinBtn.setAttribute('disabled','disabled');
         spinBtn.classList.remove('glow');
     } else {
