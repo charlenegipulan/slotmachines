@@ -1,15 +1,18 @@
+:focus {
+    outline: none !important;
+}
+
 h1, h2, h3 {
     font-family: 'Rubik Mono One', sans-serif;
     color: white;
 }
 
 h3 {
-    display: inline-block;
     margin-top: -10px;
-}
-
-p {
-    display: block;  
+    margin-right: 30px;
+    margin-bottom: -10px;
+    display: inline-block;
+    font-size: 30px;
 }
 
 h1 {
@@ -17,22 +20,26 @@ h1 {
     text-align: center;
     letter-spacing: 15px;
 }
+
 .flash {
     animation-name: flash;
-     animation-duration: 0.2s;
-     animation-timing-function: linear;
-     animation-iteration-count: infinite;
-     animation-direction: alternate;
-     animation-play-state: running;
- }
- 
- @keyframes flash {
-     from {color: white;}
-     to {color: gold;}
- }
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+
+@keyframes flash {
+    from {color: white;}
+    to {color: gold;}
+}
+
 
 h2 {
     font-size: 15px;
+    margin-top: 20px;
 }
 
 
@@ -44,17 +51,16 @@ h4 {
 li {
     font-size: 23px;
 }
+
 .flex-container {
     display: flex;
     flex-direction: column;
     background-color: rgb(191, 191, 191)
-
 }
 
 body {
     background-color: rgb(191, 191, 191)
 }
-
   
 
 .two {
@@ -63,22 +69,25 @@ body {
     justify-content: center;
 }
 
+.three {
+    margin-top: 20px;
+}
+
 .keys {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 38px;
     float: left;
-    background-color: rgb(204, 204, 204);
+    background-color: #F7DC6F;
+    box-shadow: 5px 10px #D4AC0D;
     border: 2px white;
     padding-right: 35px;
     height: 220px;
 }
 
 .scoreboard {
-    /* margin: 0 auto; */
     margin-top: 5px;
     margin-bottom: 5px;
     border: 2px white;
-    float: right;
     margin-left: 150px;
     padding: 5px 10px;
     width: 320px;
@@ -95,6 +104,7 @@ li {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
 }
 
 .slots {
@@ -156,10 +166,11 @@ li {
 #stop1, #stop2, #stop3 {
     margin-top: 5px;
     border-radius: 100%;
-    /* padding-top: 15px;
-    padding-bottom: 15px; */
     box-shadow: 5px 5px #D4AC0D; 
     color: gray;
+    height: 34px;
+    width: 34px;
+
 }
 
 .topbox {
@@ -184,31 +195,34 @@ li {
     margin: 0 auto;
 }
     
-
 #btn-shuffle {
-    background-color: #004A7F;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  border: none;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Arial;
-  font-size: 20px;
-  padding: 5px 40px;
-  text-align: center;
-  text-decoration: none;
+    background-color:#E5E8E8;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Arial;
+    font-size: 20px;
+    padding: 5px 40px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.glow {
   -webkit-animation: glowing 1500ms infinite;
   -moz-animation: glowing 1500ms infinite;
   -o-animation: glowing 1500ms infinite;
   animation: glowing 1500ms infinite;
 }
+
 @-webkit-keyframes glowing {
   0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
   50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
   100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
 }
-}
+
 
 #btn-shuffle:active {
     background-color: red;
@@ -216,12 +230,88 @@ li {
     transform: translateY(4px);
 }
 
-#add, #subtract {
-    display: inline;
-    color: rgb(179, 179, 179);
-}
+
 
 #currentBankroll, #bettedAmount {
     font-size: 70px;
-    color: #F1C40F
+    color: #F1C40F;
+}
+
+.circle {
+    border-radius: 100%;
+    height: 15px;
+    width: 15px;
+    display: block;
+    margin: 2px;
+}
+
+.leftcircles {
+    margin-top: 30px;
+    margin-right: 10px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightcircles {
+    margin-top: 30px;
+    margin-right: 13px;
+    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.topcircles {
+    margin-top: 7px;
+    margin-right: 8px;
+    margin-left: -235px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    
+}
+
+.bottomcircles {
+    margin-top: 280px;
+    margin-right: 8px;
+    margin-left: -235px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+}
+
+#add, #subtract { 
+    color: gray;
+    height: 34px;
+    width: 34px;
+    font-size: 30px;
+    border: none;
+    background-color: rgb(191, 191, 191);
+    position: relative;
+    display: block;
+}
+
+
+.buttons123 {
+    position: relative;
+    margin-bottom: 10px;
+    margin-top: -10px;
+    margin-right: -5px;
+}
+
+.bet123{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    margin-right: -2px;
+}
+
+.amount1 {
+    position: relative;
+    width: 500px;
+    height: 80px;
+    padding: 2px;
+    margin-left: -43px;
 }

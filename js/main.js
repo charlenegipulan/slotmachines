@@ -1,24 +1,24 @@
 /*----- constants -----*/
 var symbols = [
-    { emoji: '💲', worth: 5 },
-    { emoji: '🍌', worth: 4 },
-    { emoji: '🍊', worth: 3 },
-    { emoji: '🍎', worth: 2 },
-    { emoji: '🥔', worth: 1.5 }
+    { emoji: '💲', worth: 8 },
+    { emoji: '🍌', worth: 6 },
+    { emoji: '🍊', worth: 4 },
+    { emoji: '🍎', worth: 3 },
+    { emoji: '🥔', worth: 2 }
 ];
 
 var weighting = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4];
-
-// var sounds = {
-//     reels: 'https://freesound.org/data/previews/69/69689_866625-lq.mp3'
-// };
+var reelSound;
+var addSound;
+var winningSound;
+var returnSound;
+var loseSound;
 
 /*----- app's state (variables) -----*/
 
 var reels, stopped;
 var winnings, bankroll, bet;
 var timerIds;
-// var player = new Audio();
 
 
 
@@ -64,6 +64,8 @@ document.getElementById('subtract').addEventListener('click', decreaseBet);
 
 /*----- functions -----*/
 function increaseBet() {
+    addSound = new Audio('https://freesound.org/data/previews/333/333038_3908740-lq.mp3');
+    addSound.play();
     if (stopped.includes(false)) return;
     if (bankroll < 5) return;
     bet += 5; 
@@ -72,6 +74,7 @@ function increaseBet() {
 };
 
 function decreaseBet() {
+    addSound.play();
     if (stopped.includes(false)) return;
     if (bet < 5 ) return;
     bankroll += 5;
@@ -80,7 +83,8 @@ function decreaseBet() {
 };
 
 function startFlashing() {
-    var reelSound = new Audio('https://freesound.org/data/previews/69/69689_866625-lq.mp3');
+    reelSound = new Audio('https://freesound.org/data/previews/69/69689_866625-lq.mp3');
+    reelSound.loop = true;
     reelSound.play();
     timerIds = [];
     timerIds.push(setInterval(function() {
@@ -105,6 +109,9 @@ function getRandomResult() {
 function shuffle(reelIdx) {
     var symbolIdx = Math.floor(Math.random() * symbols.length);
     reelEls[reelIdx].textContent = symbols[symbolIdx].emoji;
+    stop1.textContent = stopped[0] ? '' : 'X';
+    stop2.textContent = stopped[1] ? '' : 'X';
+    stop3.textContent = stopped[2] ? '' : 'X';
 };
 
 function stopShuffle(reelIdx) {
@@ -113,6 +120,7 @@ function stopShuffle(reelIdx) {
     stopped[reelIdx] = true;
     clearInterval(timerIds[reelIdx]);
     if (!stopped.includes(false)) {
+        reelSound.pause();
         checkForWin();
     }
     render();
@@ -121,14 +129,22 @@ function stopShuffle(reelIdx) {
 function checkForWin() {
     //if there's three matching numbers in the array
     if (reels[0] === reels[1] && reels[0] === reels[2] && reels[1] === reels[2]) {
+        winningSound = new Audio('https://freesound.org/data/previews/69/69696_866625-lq.mp3');
+        winningSound.play();
         winnings = bet * symbols[reels[0]].worth;
         bankroll += winnings;
     } else if (reels[0] === reels[1] || reels[0] === reels[2] || reels[1] === reels[2]) {
+        returnSound = new Audio('https://freesound.org/data/previews/69/69681_866625-lq.mp3');
+        returnSound.play();
         winnings = bet * 1;
         bankroll += winnings;
+    } else {
+        loseSound = new Audio('https://freesound.org/data/previews/371/371451_5450487-lq.mp3');
+        loseSound.play();
     }
     bet = 0;
 } 
+
           
 function initialize() {
     reels= [null, null, null];
@@ -146,14 +162,18 @@ function render() {
         if (stopped[idx]) h4.textContent = symbols[reels[idx]].emoji;
     });
     betAmount.textContent = '$' + bet;
-    bankrollAmount.textContent = '$' + bankroll;
+    bankrollAmount.textContent = '$' + bankroll.toFixed(0);
     if (bet === 0 && bankroll === 0) alert('loser!');
-    bet === 0 ? spinBtn.setAttribute('disabled','disabled') : spinBtn.removeAttribute('disabled');
-    // if ( bet === 0 && bankroll === 0) {
-    //     alert('You lose!);
-    // stopped[0] ? spinBtn.setAttribute('disabled','disabled') : spinBtn.removeAttribute('disabled');
-    // stopped[1] ? spinBtn.setAttribute('disabled','disabled') : spinBtn.removeAttribute('disabled');
-    // stopped[2] ? spinBtn.setAttribute('disabled','disabled') : spinBtn.removeAttribute('disabled');
+    if (bet === 0) {
+        spinBtn.setAttribute('disabled','disabled');
+        spinBtn.classList.remove('glow');
+    } else {
+        spinBtn.removeAttribute('disabled');
+        spinBtn.classList.add('glow');
+    }
+    stop1.textContent = stopped[0] ? '' : 'X';
+    stop2.textContent = stopped[1] ? '' : 'X';
+    stop3.textContent = stopped[2] ? '' : 'X';
 };
  
 initialize();
