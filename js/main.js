@@ -144,7 +144,6 @@ function checkForWin() {
     }
     bet = 0;
 } 
-
           
 function initialize() {
     reels= [null, null, null];
@@ -154,8 +153,6 @@ function initialize() {
 render();
 };
             
-            
-            
 //transfers all state to the DOM(Visualization)
 function render() {
     reelEls.forEach(function(h4, idx) {
@@ -163,7 +160,7 @@ function render() {
     });
     betAmount.textContent = '$' + bet;
     bankrollAmount.textContent = '$' + bankroll.toFixed(0);
-    if (bet === 0 && bankroll === 0) alert('loser!');
+    // if (bet === 0 && bankroll === 0) alert('loser!');
     if (bet === 0) {
         spinBtn.setAttribute('disabled','disabled');
         spinBtn.classList.remove('glow');
