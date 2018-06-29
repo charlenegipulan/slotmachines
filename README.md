@@ -29,5 +29,8 @@ The player loses once the bet amount and the bankroll amount both reach $0. Payo
 
 
 ## Next Steps
-* Add a modal displaying winning/losing message
+* Make the reels roll out images, instead of flashing them.
 * Create buttons that allow user to increment the bet with different amounts. 
+* Add a lever element to replace the spin button.
+* Add a restart button to allow the user to restart the game.
+
