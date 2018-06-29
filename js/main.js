@@ -8,14 +8,14 @@ var symbols = [
 ];
 
 var weighting = [0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4];
+
+/*----- app's state (variables) -----*/
+
 var reelSound;
 var addSound;
 var winningSound;
 var returnSound;
 var loseSound;
-
-/*----- app's state (variables) -----*/
-
 var reels, stopped;
 var winnings, bankroll, bet;
 var timerIds;
@@ -24,8 +24,8 @@ var timerIds;
 
 var reelEls = document.querySelectorAll('div.reels h4');
 var spinBtn = document.getElementById('btn-shuffle');
-var bankrollAmount = document.getElementById('currentBankroll');
-var betAmount = document.getElementById('bettedAmount');
+var bankrollAmount = document.getElementById('currentbankroll');
+var betAmount = document.getElementById('bettedamount');
 
 /*----- event listeners -----*/
 spinBtn.addEventListener('click', function() {
@@ -64,8 +64,8 @@ document.getElementById('subtract').addEventListener('click', decreaseBet);
 function increaseBet() {
     addSound = new Audio('https://freesound.org/data/previews/333/333038_3908740-lq.mp3');
     addSound.play();
-    if (stopped.includes(false)) return;
-    if (bankroll < 5) return;
+    if (stopped.includes(false)) return; //prevents from being clickable when reels are running
+    if (bankroll < 5) return; //caps to 0, cant press if less than 5
     bet += 5; 
     bankroll -= 5;
     render();
@@ -107,8 +107,8 @@ function getRandomResult() {
 
 //responsible for displaying the random emoji's in the reels, different intervals
 function shuffle(reelIdx) {
-    var symbolIdx = Math.floor(Math.random() * symbols.length);
-    reelEls[reelIdx].textContent = symbols[symbolIdx].emoji;
+    var symbolIdx = Math.floor(Math.random() * symbols.length); //gives a random number to be used as index in symbols
+    reelEls[reelIdx].textContent = symbols[symbolIdx].emoji; //displays the flashing randomized idx in the reel
     stop1.textContent = stopped[0] ? '' : 'X';
     stop2.textContent = stopped[1] ? '' : 'X';
     stop3.textContent = stopped[2] ? '' : 'X';
@@ -152,10 +152,9 @@ function checkForWin() {
 
 //losing message function, runs when bet and bankroll reach 0
 function declareLoser() {
-    document.querySelector('.modalBox').style.display = 'block';
+    document.querySelector('.modalbox').style.display = 'block';
 }
  
-
 function initialize() {
     reels= [null, null, null];
     stopped = [];
@@ -163,17 +162,16 @@ function initialize() {
     bet = 0;
 render();
 };
-
-            
+         
 //transfers all state to the DOM(Visualization)
 function render() {
     reelEls.forEach(function(h4, idx) {
         if (stopped[idx]) h4.textContent = symbols[reels[idx]].emoji;
     });
     betAmount.textContent = '$' + bet;
-    bankrollAmount.textContent = '$' + bankroll.toFixed(0);
+    bankrollAmount.textContent = '$' + bankroll;
     if (bet === 0 && bankroll === 0) declareLoser();
-    if (bet === 0 || stopped.includes(false)) {
+    if (bet === 0 || stopped.includes(false)) { //disables spin button while bet is 0
         spinBtn.setAttribute('disabled','disabled');
         spinBtn.classList.remove('glow');
     } else {

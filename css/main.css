@@ -53,7 +53,7 @@ hr {
     background-color: #D4AC0D;
 }
 
-p {
+p, li {
     color: white;
     font-size: 20px;
 }
@@ -64,9 +64,7 @@ p {
 }
 
 li {
-    font-size: 20px;
     list-style-type: none;
-    color: white;
     text-align: center;
 }
 
@@ -260,8 +258,7 @@ body {
     transform: translateY(4px);
 }
 
-
-#currentBankroll, #bettedAmount {
+#currentbankroll, #bettedamount {
     font-size: 70px;
     color: #F1C40F;
 }
@@ -299,7 +296,7 @@ body {
     margin-left: -30px;
 }
 
-.modalBox {
+.modalbox {
     display: none;
     width: 350px;
     height: 150px;
